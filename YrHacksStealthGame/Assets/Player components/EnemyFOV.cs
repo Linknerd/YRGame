@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyDetection : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
     [SerializeField] MousePosition mousePosition;
@@ -24,14 +24,12 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     private void Update(){
-        SetAimDirection((GetMouseWorldPosition() - playerController.transform.position).normalized);
-        SetOrigin(playerController.transform.position);
+        SetAimDirection((enemy.points[enemy.num].transform.position - enemy.transform.position).normalized);
+        SetOrigin(enemy.transform.position);
         int rayCount = 50;
         float viewDistance = 15f;
         float angle = startAngle;
         float angleIncrease = fov / rayCount;
-
-
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
@@ -53,8 +51,8 @@ public class NewBehaviourScript : MonoBehaviour
             } else {
                 // Hit object
                 vertex = raycastHit2D.point;
-                if(raycastHit2D.collider.tag.Equals("Enemy")){
-                    enemy.SpriteEnabled();
+                if(raycastHit2D.collider.tag.Equals("Player")){
+                    Debug.Log("GameOver");
                     detected = true;
                 }else{
                 }
@@ -79,6 +77,10 @@ public class NewBehaviourScript : MonoBehaviour
         mesh.triangles = triangles;
     }
 
+    private void OnDrawGizoms(){
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(origin,0.2f);
+    }
     private Vector3 GetVectorFromAngle(float angle){
         float angleRad = angle * (Mathf.PI/180f);
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));

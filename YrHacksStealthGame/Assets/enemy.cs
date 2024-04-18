@@ -12,6 +12,7 @@ public class enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     public int num = 0;
+    bool switched = false;
     public Transform[] points = new Transform[3];
     [SerializeField] LayerMask layerMask;
     Vector2 direction;
@@ -30,15 +31,17 @@ public class enemy : MonoBehaviour
     {
         direction = new Vector2(points[num].position.x,points[num].position.y) - new Vector2(transform.position.x,transform.position.y);
         direction = direction.normalized;
-        if(pointReached()){
-            if(num<points.Length-1){
+    }
+    void FixedUpdate(){
+        if(pointReached() && !switched){
+            StartCoroutine(Switch());
+            if(num<points.Length-1 && !switched){
             num++;
-            }else{
+            }
+            else if(num>=points.Length-1){
                 num = 0;
             }
         }
-    }
-    void FixedUpdate(){
         rb.velocity = direction*moveSpeed;
     }
     public void SpriteEnabled(){
@@ -49,5 +52,11 @@ public class enemy : MonoBehaviour
     }
     private bool pointReached(){
         return Physics2D.OverlapCircle(transform.position, 0.2f, layerMask);
+    }
+
+    private IEnumerator Switch(){
+        switched = true;
+        yield return new WaitForSeconds(0.5f);
+        switched = false;
     }
 }
