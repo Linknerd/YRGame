@@ -839,6 +839,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 866277035175759806, guid: ac5c630f6172441faaebb15232369a52, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6598719069590747549, guid: ac5c630f6172441faaebb15232369a52, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.64
