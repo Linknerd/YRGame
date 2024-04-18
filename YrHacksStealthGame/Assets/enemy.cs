@@ -33,9 +33,12 @@ public class enemy : MonoBehaviour
         direction = direction.normalized;
     }
     void FixedUpdate(){
-        if(pointReached() && !switched){
+        if(switched == true){
+            return;
+        }
+        if(pointReached()){
             StartCoroutine(Switch());
-            if(num<points.Length-1 && !switched){
+            if(num<points.Length-1){
             num++;
             }
             else if(num>=points.Length-1){

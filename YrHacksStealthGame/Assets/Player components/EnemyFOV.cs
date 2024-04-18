@@ -45,15 +45,11 @@ public class EnemyDetection : MonoBehaviour
             if (raycastHit2D.collider == null) {
                 // No hit
                 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
-                if(detected == false){
-                enemy.SpriteDisabled();
-                }
             } else {
                 // Hit object
                 vertex = raycastHit2D.point;
                 if(raycastHit2D.collider.tag.Equals("Player")){
                     Debug.Log("GameOver");
-                    detected = true;
                 }else{
                 }
             }
@@ -90,11 +86,6 @@ public class EnemyDetection : MonoBehaviour
         float n = Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
         if(n<0) n+=360;
         return n;
-    }
-    public Vector3 GetMouseWorldPosition() {
-    Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    mouseWorldPosition.z = 0f;
-    return mouseWorldPosition;
 }
 
     public void SetOrigin(Vector3 origin){
