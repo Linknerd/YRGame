@@ -136,9 +136,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   points:
-  - {x: 1.13240896e-32, y: 1e-45, z: 1e-45}
-  - {x: 0, y: 2.6089465e+29, z: 1e-45}
-  - {x: 4.6e-44, y: 0, z: 1.13240896e-32}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
   moveSpeed: 4
 --- !u!50 &1890037263414661585
 Rigidbody2D:

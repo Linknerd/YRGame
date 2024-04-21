@@ -15,9 +15,10 @@ public class playerController : MonoBehaviour
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     public float collisionOffset = 0.1f;
     public int ebottles = 3;
-    bool isDrinking;
+    public bool canTakeDrink = false;
     bool hasEnergy;
     int smokeBomb = 0;
+    [SerializeField] GetBottle bottle;
   //  [SerializeField] textUpdate textUpdate;
     void Start()
     {
@@ -34,6 +35,12 @@ public class playerController : MonoBehaviour
                 //textUpdate.UpdateDisplay();
             }else{
                 Debug.Log("No more drinks");
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.E)){
+            if(canTakeDrink == true){
+                bottle.takeDrink();
+                Debug.Log(ebottles);
             }
         }
     }

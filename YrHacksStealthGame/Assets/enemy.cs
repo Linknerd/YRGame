@@ -29,37 +29,55 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = new Vector2(points[num].position.x,points[num].position.y) - new Vector2(transform.position.x,transform.position.y);
+        direction = new Vector2(points[num].position.x, points[num].position.y) - new Vector2(transform.position.x, transform.position.y);
         direction = direction.normalized;
     }
-    void FixedUpdate(){
-        if(switched == true){
-            return;
-        }
-        if(pointReached()){
-            StartCoroutine(Switch());
-            if(num<points.Length-1){
-            num++;
-            }
-            else if(num>=points.Length-1){
-                num = 0;
+    void FixedUpdate()
+    {
+        if (pointReached())
+        {
+            if (!switched)
+            {
+                StartCoroutine(Switch());
+                IncrementNum();
             }
         }
-        rb.velocity = direction*moveSpeed;
+       //Debug.Log($"Moving towards point {num}, direction: {direction}, switched: {switched}");
+
+        rb.velocity = direction * moveSpeed;
     }
-    public void SpriteEnabled(){
+    public void SpriteEnabled()
+    {
         spriteRenderer.enabled = true;
     }
-    public void SpriteDisabled(){
+    public void SpriteDisabled()
+    {
         spriteRenderer.enabled = false;
     }
-    private bool pointReached(){
-        return Physics2D.OverlapCircle(transform.position, 0.2f, layerMask);
+    private bool pointReached()
+    {
+        //return Physics2D.OverlapCircle(transform.position, 0.5f, layerMask);
+        return Vector2.Distance(transform.position, points[num].position) < 1f;
     }
 
-    private IEnumerator Switch(){
+    private IEnumerator Switch()
+    {
         switched = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         switched = false;
     }
+    private void IncrementNum()
+    {
+        if (num < points.Length - 1)
+        {
+            num++;
+        }
+        else
+        {
+            num = 0; // Reset to start if last node reached
+        }
+        // Recalculate direction after num update
+        direction = (Vector2)(points[num].position - transform.position).normalized;
+    }
+
 }

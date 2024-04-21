@@ -27,7 +27,7 @@ public class NewBehaviourScript : MonoBehaviour
         SetAimDirection((GetMouseWorldPosition() - playerController.transform.position).normalized);
         SetOrigin(playerController.transform.position);
         int rayCount = 50;
-        float viewDistance = 15f;
+        float viewDistance = 25f;
         float angle = startAngle;
         float angleIncrease = fov / rayCount;
 
