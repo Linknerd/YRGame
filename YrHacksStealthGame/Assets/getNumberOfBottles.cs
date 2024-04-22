@@ -8,16 +8,18 @@ using System;
 public class getNumberOfBottles : MonoBehaviour
 {
     // Start is called before the first frame update
-    TextMeshPro tmp;
+    TextMeshProUGUI tmp;
     [SerializeField] playerController player;
     void Start()
     {
-        tmp.text = "15";
+        tmp = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (tmp != null && player != null) {
         tmp.text = player.ebottles.ToString();
+    }
     }
 }

@@ -18,7 +18,6 @@ public class playerController : MonoBehaviour
     public bool canTakeDrink = false;
     bool hasEnergy;
     int smokeBomb = 0;
-    [SerializeField] GetBottle bottle;
   //  [SerializeField] textUpdate textUpdate;
     void Start()
     {
@@ -37,12 +36,8 @@ public class playerController : MonoBehaviour
                 Debug.Log("No more drinks");
             }
         }
-        if(Input.GetKeyDown(KeyCode.E)){
-            if(canTakeDrink == true){
-                bottle.takeDrink();
-                Debug.Log(ebottles);
-            }
-        }
+        
+
     }
     void FixedUpdate()
     {
