@@ -10,6 +10,7 @@ public class GetBottle : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] playerController player;
     [SerializeField] interactPrompts prompts;
+    public static int display;
     void Start()
     {
 
@@ -21,15 +22,26 @@ public class GetBottle : MonoBehaviour
         if (CanGrab())
         {
             prompts.bottle();
+            display = 2;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 takeDrink();
             }
-        }else{
-            prompts.Reset();
+        }
+        else
+        {
+            if (display > 0 && !CanGrab())
+            {
+                display--;
+            }
+            else
+            {
+                display = 0;
+                prompts.Reset();
+            }
         }
     }
-    bool CanGrab()
+    public bool CanGrab()
     {
         return Vector2.Distance(player.transform.position, transform.position) < 1f;
     }
@@ -38,6 +50,8 @@ public class GetBottle : MonoBehaviour
     {
         player.ebottles++;
         player.canTakeDrink = false;
+        prompts.Reset();
+        display = 0;
         Destroy(this);
     }
 }

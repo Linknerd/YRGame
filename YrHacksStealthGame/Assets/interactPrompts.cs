@@ -29,5 +29,6 @@ public class interactPrompts : MonoBehaviour
     }
     public void Reset(){
         tmp.text = "";
+        Debug.Log("fdfsa");
     }
 }

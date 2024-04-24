@@ -17,6 +17,7 @@ public class NewBehaviourScript : MonoBehaviour
     float startAngle;
     private float fov;
     float viewDistance = 15f;
+    bool isPeeking = false;
     private void Start()
     {
         mesh = new Mesh();
@@ -26,6 +27,12 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space)){
+            isPeeking = true;
+        }else{
+            isPeeking = false;
+        }
+        
         SetAimDirection((GetMouseWorldPosition() - playerController.transform.position).normalized);
         SetOrigin(playerController.transform.position);
         int rayCount = 50;
