@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class interactPrompts : MonoBehaviour
@@ -25,6 +26,16 @@ public class interactPrompts : MonoBehaviour
         if(tmp != null){
             Debug.Log("asdf");
             tmp.text = "Press E to collect bottle";
+        }
+    }
+    public void hideTrash(){
+        if(tmp != null){
+            tmp.text = "Press E to hide";
+        }
+    }
+    public void leaveTrash(){
+        if(tmp != null){
+            tmp.text = "Press E to leave";
         }
     }
     public void Reset(){

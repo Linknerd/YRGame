@@ -11,6 +11,7 @@ public class GetBottle : MonoBehaviour
     [SerializeField] playerController player;
     [SerializeField] interactPrompts prompts;
     public static int display;
+    public static bool hasReset;
     void Start()
     {
 
@@ -37,7 +38,10 @@ public class GetBottle : MonoBehaviour
             else
             {
                 display = 0;
+                if(!hasReset){
                 prompts.Reset();
+                hasReset = false;
+                }
             }
         }
     }

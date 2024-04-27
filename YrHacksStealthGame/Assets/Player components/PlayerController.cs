@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector2 movementInput;
+    bool canMove = true;
     Rigidbody2D rb;
     public float moveSpeed = 5f;
     ContactFilter2D movementFilter;
@@ -18,11 +19,15 @@ public class playerController : MonoBehaviour
     public bool canTakeDrink = false;
     bool hasEnergy;
     int smokeBomb = 0;
+    Collider2D collider2D;
+    SpriteRenderer spriteRenderer;
   //  [SerializeField] textUpdate textUpdate;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         transform = GetComponent<Transform>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        collider2D = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -41,6 +46,7 @@ public class playerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if(canMove){
         if (movementInput != UnityEngine.Vector2.zero)
         {
             bool success = tryMove(movementInput);
@@ -68,6 +74,7 @@ public class playerController : MonoBehaviour
                 rb.velocity = Vector2.zero;
             }
     }
+    }
 
     IEnumerator energyDrink(){
        ebottles -= 1;
@@ -89,7 +96,17 @@ public class playerController : MonoBehaviour
             return false;
         }
     }
-
+    public void hide(){
+        canMove = false;
+        rb.velocity = Vector2.zero;
+        spriteRenderer.enabled = false;
+        collider2D.enabled = false;
+    }
+    public void leave(){
+        canMove = true;
+        spriteRenderer.enabled = true;
+        collider2D.enabled = true;
+    }
 
     void OnMove(InputValue movementValue)
     {

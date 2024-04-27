@@ -21,9 +21,12 @@ public class PromptManager : MonoBehaviour
     }
 
     // Display a specific prompt message
-    public void DisplayPrompt(string message)
+    public void bottle(string message)
     {
         promptText.text = message;
+    }
+    public void trashCan(){
+        promptText.text = "Press E to hide in trash";
     }
 
     // Clear any prompt message

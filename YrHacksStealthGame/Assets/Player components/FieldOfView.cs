@@ -38,12 +38,12 @@ public class NewBehaviourScript : MonoBehaviour
         int rayCount = 50;
         float angle = startAngle;
         float angleIncrease = fov / rayCount;
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             viewDistance = 25f;
             fov = 45;
         }
-        else if(Input.GetKeyUp(KeyCode.Q)){
+        else if(Input.GetKeyUp(KeyCode.LeftShift)){
             viewDistance = 15f;
             fov = 90;
         }
