@@ -43,7 +43,7 @@ public class trashCan : MonoBehaviour
     }
     public bool CanHide()
     {
-        return Vector2.Distance(player.transform.position, transform.position) < 1f;
+        return Vector2.Distance(player.transform.position, transform.position) < 3f;
     }
     private void hide(){
         player.hide();
