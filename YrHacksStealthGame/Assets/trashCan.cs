@@ -37,16 +37,18 @@ public class trashCan : MonoBehaviour
         }
         else
         {
+                prompts.needsDisplay--;
                 prompts.Reset();
                 Debug.Log("Resetting");
         }
     }
     public bool CanHide()
     {
-        return Vector2.Distance(player.transform.position, transform.position) < 3f;
+        return Vector2.Distance(player.transform.position, transform.position) <2f;
     }
     private void hide(){
         player.hide();
+        player.transform.position = transform.position;
         hidden = true;
     }
     private void stopHiding(){

@@ -8,6 +8,8 @@ using UnityEngine;
 public class interactPrompts : MonoBehaviour
 {
     TextMeshProUGUI tmp;
+    public int numberOfObjects = 0;
+    public int needsDisplay;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,8 @@ public class interactPrompts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        needsDisplay = numberOfObjects;
+        Debug.Log(needsDisplay);
     }
     public void bottle(){
         if(tmp != null){
@@ -39,7 +42,9 @@ public class interactPrompts : MonoBehaviour
         }
     }
     public void Reset(){
+        if(needsDisplay < 0){
         tmp.text = "";
         Debug.Log("fdfsa");
+        }
     }
 }

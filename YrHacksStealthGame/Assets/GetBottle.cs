@@ -37,6 +37,7 @@ public class GetBottle : MonoBehaviour
             }
             else
             {
+                prompts.needsDisplay--;
                 display = 0;
                 if(!hasReset){
                 prompts.Reset();
