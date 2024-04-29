@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class EnemyDetection : MonoBehaviour
 {
@@ -50,6 +50,7 @@ public class EnemyDetection : MonoBehaviour
                 vertex = raycastHit2D.point;
                 if(raycastHit2D.collider.tag.Equals("Player")){
                     Debug.Log("GameOver");
+                    SceneManager.LoadScene("Game Over");
                 }else{
                 }
             }
