@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 public class playerController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -17,8 +17,7 @@ public class playerController : MonoBehaviour
     public float collisionOffset = 0.1f;
     public int ebottles = 3;
     public bool canTakeDrink = false;
-    bool hasEnergy;
-    int smokeBomb = 0;
+    public bool hasConsole = false;
     Collider2D collider2D;
     SpriteRenderer spriteRenderer;
   //  [SerializeField] textUpdate textUpdate;
@@ -40,6 +39,9 @@ public class playerController : MonoBehaviour
             }else{
                 Debug.Log("No more drinks");
             }
+        }
+        if(hasConsole){
+            SceneManager.LoadScene("Win!");
         }
         
 

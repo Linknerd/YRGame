@@ -47,4 +47,9 @@ public class interactPrompts : MonoBehaviour
         Debug.Log("fdfsa");
         }
     }
+    public void objective(){
+        if(tmp!=null){
+            tmp.text = "Press E to get the console!";
+        }
+    }
 }
